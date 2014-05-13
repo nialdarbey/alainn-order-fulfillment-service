@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:ws="http://www.mulesoft.org/schema/mule/ws"
+	xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper"
+	xmlns:https="http://www.mulesoft.org/schema/mule/https"
+	xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
+	xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.5.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd
+http://www.mulesoft.org/schema/mule/https http://www.mulesoft.org/schema/mule/https/current/mule-https.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/current/mule-cxf.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
+http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
+http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/current/mule-ws.xsd
+http://www.mulesoft.org/schema/mule/ee/data-mapper http://www.mulesoft.org/schema/mule/ee/data-mapper/current/mule-data-mapper.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd">
+
+	<https:connector name="httpsConnector" cookieSpec="netscape"
+		validateConnections="true" sendBufferSize="0" receiveBufferSize="0"
+		receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000"
+		socketSoLinger="0" doc:name="HTTP\HTTPS">
+		<service-overrides
+			messageFactory="org.mule.transport.http.HttpMultipartMuleMessageFactory" />
+		<https:tls-key-store path="keystore.jks"
+			keyPassword="changeit" storePassword="changeit" />
+	</https:connector>
+	<mulexml:namespace-manager
+		includeConfigNamespaces="true">
+		<mulexml:namespace prefix="mes"
+			uri="http://www.alainn.com/SOA/message/1.0" />
+		<mulexml:namespace prefix="mod"
+			uri="http://www.alainn.com/SOA/model/1.0" />
+	</mulexml:namespace-manager>
+	<context:property-placeholder location="config.${env}.properties" />
+	<ws:consumer-config name="BasketServiceConsumer"
+		wsdlLocation="service/BasketService.wsdl" service="BasketService"
+		port="BasketPort" serviceAddress="${url.basketService}" doc:name="Web Service Consumer" />
+	<ws:consumer-config name="WishListServiceConsumer"
+		wsdlLocation="service/WishListService.wsdl" service="WishListService"
+		port="WishListPort" serviceAddress="${url.wishListService}" doc:name="Web Service Consumer" />
+	<ws:consumer-config name="CustomerServiceConsumer"
+		wsdlLocation="service/CustomerService.wsdl" service="CustomerService"
+		port="CustomerPort" serviceAddress="${url.customerService}" doc:name="Web Service Consumer" />
+	<ws:consumer-config name="RegistrationServiceConsumer"
+		wsdlLocation="service/RegistrationService.wsdl" service="RegistrationService"
+		port="RegistrationPort" serviceAddress="${url.registrationService}"
+		doc:name="Web Service Consumer" />
+	<ws:consumer-config name="ItemServiceConsumer"
+		wsdlLocation="service/ItemService.wsdl" service="ItemService" port="ItemPort"
+		serviceAddress="${url.itemService}" doc:name="Web Service Consumer" />
+	<ws:consumer-config name="DiscountServiceConsumer"
+		wsdlLocation="service/DiscountService.wsdl" service="DiscountService"
+		port="DiscountPort" serviceAddress="${url.discountService}" doc:name="Web Service Consumer" />
+	<ws:consumer-config name="NotificationServiceConsumer"
+		wsdlLocation="service/NotificationService.wsdl" service="NotificationService"
+		port="NotificationPort" serviceAddress="${url.notificationService}"
+		doc:name="Web Service Consumer" />
+
+	<data-mapper:config name="xml_to_xml_savesale_"
+		transformationGraphPath="xml_to_xml_savesale_.grf" doc:name="xml_to_xml_savesale_" />
+	<data-mapper:config name="xml_to_xml_modifyskustockcountbysale_"
+		transformationGraphPath="xml_to_xml_modifyskustockcountbysale_.grf"
+		doc:name="xml_to_xml_modifyskustockcountbysale_" />
+	<data-mapper:config name="xml_to_xml_calculatediscount_"
+		transformationGraphPath="xml_to_xml_calculatediscount_.grf" doc:name="xml_to_xml_calculatediscount_" />
+	<data-mapper:config name="xml_calculatediscountresponse__to_xml_savesale_"
+		transformationGraphPath="xml_calculatediscountresponse__to_xml_savesale_.grf"
+		doc:name="xml_calculatediscountresponse__to_xml_savesale_" />
+	<data-mapper:config name="xml_savesaleresponse__to_xml"
+		transformationGraphPath="xml_savesaleresponse__to_xml.grf" doc:name="xml_savesaleresponse__to_xml" />
+	<ws:consumer-config name="OrderServiceConsumer"
+		wsdlLocation="service/OrderService.wsdl" service="OrderService" port="OrderPort"
+		serviceAddress="${url.orderService}" doc:name="Web Service Consumer" />
+	<data-mapper:config name="xml_processorder__to_xml_modifyskustockcount_"
+		transformationGraphPath="xml_processorder__to_xml_modifyskustockcount_.grf"
+		doc:name="xml_processorder__to_xml_modifyskustockcount_" />
+	<data-mapper:config name="xml_to_xml"
+		transformationGraphPath="xml_to_xml.grf" doc:name="xml_to_xml" />
+	<data-mapper:config name="xml_processorder__to_xml_calculatediscount_"
+		transformationGraphPath="xml_processorder__to_xml_calculatediscount_.grf"
+		doc:name="xml_processorder__to_xml_calculatediscount_" />
+    <data-mapper:config name="XML_To_XML" transformationGraphPath="xml_to_xml_1.grf" doc:name="XML_To_XML"/>
+    <data-mapper:config name="XML_processOrder__To_Xml_addLoyaltyPoints_" transformationGraphPath="xml_processorder__to_xml_addloyaltypoints_.grf" doc:name="XML_processOrder__To_Xml_addLoyaltyPoints_"/>
+    <data-mapper:config name="XML_To_Xml_emptyBasket_" transformationGraphPath="xml_to_xml_emptybasket_.grf" doc:name="XML_To_Xml_emptyBasket_"/>
+    <data-mapper:config name="XML_To_Xml_notifySKUItemMovement_" transformationGraphPath="xml_to_xml_notifyskuitemmovement_.grf" doc:name="XML_To_Xml_notifySKUItemMovement_"/>
+
+	<flow name="customerserviceFlow1" doc:name="customerserviceFlow1">
+		<https:inbound-endpoint exchange-pattern="request-response"
+			host="localhost" port="${https.port}" path="order-fulfillment-service"
+			doc:name=":8081/order-fulfillment-service" connector-ref="httpsConnector" />
+		<cxf:proxy-service doc:name="Proxy service"
+			namespace="http://www.alainn.com/SOA/service/OrderFulfillment/1.0"
+			port="OrderFulfillmentPort" service="OrderFulfillmentService"
+			wsdlLocation="service/OrderFulfillmentService.wsdl" payload="body"
+			 />
+		<mulexml:dom-to-xml-transformer
+			doc:name="DOM to XML" />
+		<set-variable variableName="opName"
+			value="#[xpath('fn:local-name(/*)')]" doc:name="opName" />
+		<choice doc:name="Choice">
+			<when expression="#[opName == 'processOrder']">
+				<flow-ref name="process-order" doc:name="process order" />
+                <flow-ref name="save-order" doc:name="save-order" />
+                <data-mapper:transform config-ref="xml_to_xml"
+        			doc:name="XML&lt;saveOrderResponse&gt; To XML&lt;processOrderResponse&gt;" />
+			</when>
+			<otherwise>
+				<scripting:component doc:name="Exception">
+					<scripting:script engine="Groovy"><![CDATA[throw new RuntimeException("Unknown Operation: " + flowVars.opName);]]></scripting:script>
+				</scripting:component>
+			</otherwise>
+		</choice>
+	</flow>
+	<sub-flow name="process-order" doc:name="process-order">
+        <set-variable variableName="processOrderRequest" value="#[payload]"
+			doc:name="processOrderRequest" />
+        <async doc:name="Async">
+			<flow-ref name="notifiy-sku-item-movement" doc:name="notify sku item movement" />
+		</async>
+        <enricher target="flowVars.x" doc:name="Message Enricher">
+            <flow-ref name="empty-basket" doc:name="emtpy basket"/>
+        </enricher>
+		<enricher target="flowVars.modifySkuStockCountResponse"
+			doc:name="Message Enricher">
+			<flow-ref name="modify-sku-stock-count" doc:name="modify-sku-stock-count" />
+		</enricher>
+		<enricher target="flowVars.customer" doc:name="Enrich with customer">
+			<flow-ref name="get-customer" doc:name="get customer" />
+		</enricher>
+		<enricher
+			 doc:name="Enrich with discount, totalCost, loyaltyPoints" target="flowVars.calculateDiscountResponse">
+			<flow-ref name="calculate-discount" doc:name="calculate-discount" />
+		</enricher>
+        <enricher target="flowVars.addLoyaltyPointsResponse" doc:name="Message Enricher">
+            <flow-ref name="add-loyalty-points" doc:name="add-loyalty-points"/>
+        </enricher>
+	</sub-flow>
+	<sub-flow name="get-customer" doc:name="get-customer">
+		<parse-template location="getCustomerById.xml"
+			doc:name="getCustomerById.xml" />
+		<ws:consumer config-ref="CustomerServiceConsumer"
+			operation="getCustomer" doc:name="get Customer" />
+	</sub-flow>
+	<sub-flow name="save-order" doc:name="save-order">
+        <data-mapper:transform config-ref="XML_To_XML" doc:name="XML&lt;processOrder&gt; To XML&lt;saveOrder&gt;">
+            <data-mapper:input-arguments>
+                <data-mapper:input-argument key="discount">#[Double.valueOf(xpath('/mes:calculateDiscountResponse/mod:Discount/text()', flowVars.calculateDiscountResponse).text)]</data-mapper:input-argument>
+                <data-mapper:input-argument key="totalPrice">#[Double.valueOf(xpath('/mes:calculateDiscountResponse/mod:TotalCost/text()', flowVars.calculateDiscountResponse).text)]</data-mapper:input-argument>
+            </data-mapper:input-arguments>
+        </data-mapper:transform>
+		<ws:consumer config-ref="OrderServiceConsumer" operation="saveOrder"
+			doc:name="save Order" />
+	</sub-flow>
+	<sub-flow name="modify-sku-stock-count" doc:name="modify-sku-stock-count">
+		<data-mapper:transform config-ref="xml_processorder__to_xml_modifyskustockcount_"
+			doc:name="Xml&lt;processOrder&gt; To Xml&lt;modifySKUStockCount&gt;" />
+		<ws:consumer config-ref="ItemServiceConsumer" operation="modifySKUStockCount"
+			doc:name="modify SKU Stock Count" />
+	</sub-flow>
+	<sub-flow name="calculate-discount" doc:name="calculate-discount">
+		<data-mapper:transform config-ref="xml_processorder__to_xml_calculatediscount_"
+			doc:name="XML&lt;processOrder&gt; To Xml&lt;calculateDiscount&gt;" />
+		<ws:consumer config-ref="DiscountServiceConsumer"
+			operation="calculateDiscount" doc:name="calculate Discount" />
+        <mulexml:dom-to-xml-transformer doc:name="DOM to XML"/>
+	</sub-flow>
+    <sub-flow name="add-loyalty-points" doc:name="add-loyalty-points">
+        <data-mapper:transform config-ref="XML_processOrder__To_Xml_addLoyaltyPoints_" doc:name="XML&lt;processOrder&gt; To Xml&lt;addLoyaltyPoints&gt;" returnClass="java.lang.String">
+            <data-mapper:input-arguments>
+                <data-mapper:input-argument key="loyaltyPoints">#[Integer.valueOf(xpath('/mes:calculateDiscountResponse/mod:LoyaltyPoints/text()', flowVars.calculateDiscountResponse).text)]</data-mapper:input-argument>
+            </data-mapper:input-arguments>
+        </data-mapper:transform>
+        <ws:consumer config-ref="CustomerServiceConsumer" operation="addLoyaltyPoints" doc:name="add Loyalty Points"/>
+    </sub-flow>
+	<sub-flow name="notifiy-sku-item-movement" doc:name="notifiy-sku-item-movement">
+        <data-mapper:transform config-ref="XML_To_Xml_notifySKUItemMovement_" doc:name="XML To Xml&lt;notifySKUItemMovement&gt;"/>
+		<ws:consumer config-ref="NotificationServiceConsumer"
+			operation="notifySKUItemMovement" doc:name="notifiy Sku Item Movement" />
+	</sub-flow>
+    <sub-flow name="empty-basket" doc:name="empty-basket">
+        <data-mapper:transform doc:name="XML To Xml&lt;emptyBasket&gt;" config-ref="XML_To_Xml_emptyBasket_"/>
+        <ws:consumer config-ref="BasketServiceConsumer" operation="emptyBasket" doc:name="Web Service Consumer"/>
+    </sub-flow>
+
+</mule>
