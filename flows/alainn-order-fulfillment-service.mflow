@@ -217,36 +217,35 @@
             <property name="transformationGraphPath" value="xml_processorder__to_xml_calculatediscount_.grf"/>
         </properties>
     </global-element>
-    <global-element name="XML_To_XML" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/config" entity-id="DataMapper#10">
+    <global-element name="XML_To_XML" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/config" entity-id="DataMapper#9">
         <properties>
             <property name="name" value="XML_To_XML"/>
-            <property name="auxiliary;index" value="25"/>
+            <property name="auxiliary;index" value="24"/>
             <property name="transformationGraphPath" value="xml_to_xml_1.grf"/>
         </properties>
     </global-element>
-    <global-element name="XML_processOrder__To_Xml_addLoyaltyPoints_" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/config" entity-id="DataMapper#11">
+    <global-element name="XML_processOrder__To_Xml_addLoyaltyPoints_" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/config" entity-id="DataMapper#10">
         <properties>
             <property name="name" value="XML_processOrder__To_Xml_addLoyaltyPoints_"/>
-            <property name="auxiliary;index" value="26"/>
+            <property name="auxiliary;index" value="25"/>
             <property name="transformationGraphPath" value="xml_processorder__to_xml_addloyaltypoints_.grf"/>
         </properties>
     </global-element>
-    <global-element name="XML_To_Xml_emptyBasket_" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/config" entity-id="DataMapper#12">
+    <global-element name="XML_To_Xml_emptyBasket_" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/config" entity-id="DataMapper#11">
         <properties>
             <property name="name" value="XML_To_Xml_emptyBasket_"/>
-            <property name="auxiliary;index" value="27"/>
+            <property name="auxiliary;index" value="26"/>
             <property name="transformationGraphPath" value="xml_to_xml_emptybasket_.grf"/>
         </properties>
     </global-element>
-    <global-element name="XML_To_Xml_notifySKUItemMovement_" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/config" entity-id="!!!442d73d7-0deb-4f09-ae4f-cb9279d1b7c9">
+    <global-element name="XML_To_Xml_notifySKUItemMovement_" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/config" entity-id="DataMapper#12">
         <properties>
-            <property name="doc:description" value="XML To Xml&lt;notifySKUItemMovement&gt;"/>
             <property name="name" value="XML_To_Xml_notifySKUItemMovement_"/>
-            <property name="doc:name" value="XML_To_Xml_notifySKUItemMovement_"/>
+            <property name="auxiliary;index" value="27"/>
             <property name="transformationGraphPath" value="xml_to_xml_notifyskuitemmovement_.grf"/>
         </properties>
     </global-element>
-    <flow SubFlow="false" name="customerserviceFlow1" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="b4b7cc35-8456-4903-8d6b-bbd7867655e8">
+    <flow SubFlow="false" name="customerserviceFlow1" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="cfe264a6-6d04-47bc-b9b5-284be6a1c2f0">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -292,20 +291,33 @@
                 <properties>
                     <property name="port" value="OrderFulfillmentPort"/>
                     <property name="wsdlLocation" value="service/OrderFulfillmentService.wsdl"/>
-                    <property name="serviceClass"/>
+                    <property name="serviceClass" value=""/>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/cxf/proxy-service"/>
                     <property name="payload" value="body"/>
-                    <property name="configuration-ref"/>
+                    <property name="configuration-ref" value=""/>
                     <property name="namespace" value="http://www.alainn.com/SOA/service/OrderFulfillment/1.0"/>
-                    <property name="validationEnabled"/>
-                    <property name="bindingId"/>
-                    <property name="onException"/>
+                    <property name="validationEnabled" value="false"/>
+                    <property name="updated"/>
+                    <property name="bindingId" value=""/>
                     <property name="service" value="OrderFulfillmentService"/>
-                    <property name="mtomEnabled"/>
-                    <property name="soapVersion"/>
-                    <property name="enableMuleSoapHeaders"/>
+                    <property name="mtomEnabled" value="false"/>
+                    <property name="enableMuleSoapHeaders" value="true"/>
+                    <property name="soapVersion" value="1.1"/>
                     <property name="auxiliary;index" value="30"/>
+                    <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/schemaLocations;546738480"/>
+                    <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/ws-security-full;1588380791">
+                        <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/ws-config;659485268"/>
+                        <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/ws-custom-validator;713324335">
+                            <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/bst-token-validator;1453078917"/>
+                            <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/saml1-token-validator;1000132981"/>
+                            <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/saml2-token-validator;880506598"/>
+                            <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/signature-token-validator;743854072"/>
+                            <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/timestamp-token-validator;364581109"/>
+                            <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/username-token-validator;805797109"/>
+                        </property-collection>
+                    </property-collection>
                 </properties>
+                <description></description>
             </pattern>
             <pattern name="DOM to XML" type="http://www.mulesoft.org/schema/mule/xml/dom-to-xml-transformer" entity-id="DOM to XML#1">
                 <graphicalData x="0" y="0" width="0" height="0"/>
@@ -331,48 +343,49 @@
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name=";INDEX" value="33"/>
-                    <property-collection name="c06997e8-91a8-4910-ad67-afe4442851d2">
+                    <property-collection name="cf07d716-0e83-4976-afc3-9369360320dd">
                         <property name="choice.expression" value="#[opName == 'processOrder']"/>
                         <property-collection name="choice.attributes">
                             <property name="expression" value="#[opName == 'processOrder']"/>
                         </property-collection>
                     </property-collection>
-                    <property-collection name="23d2c133-13d7-4be7-b5ee-45ecf84aa681">
+                    <property-collection name="d289c984-4470-4552-a7a8-c1d0c3b2a3c2">
                         <property name="choice.otherwise" value="true"/>
                         <property-collection name="choice.attributes"/>
                     </property-collection>
                 </properties>
+                <description></description>
                 <pattern name="Choice" type="org.mule.tooling.ui.modules.core.pattern.cbr" entity-id="Choice#2">
                     <properties>
                         <property name=";INDEX" value="33"/>
-                        <property-collection name="c06997e8-91a8-4910-ad67-afe4442851d2">
+                        <property-collection name="cf07d716-0e83-4976-afc3-9369360320dd">
                             <property name="choice.expression" value="#[opName == 'processOrder']"/>
                             <property-collection name="choice.attributes">
 <property name="expression" value="#[opName == 'processOrder']"/>
                             </property-collection>
                         </property-collection>
-                        <property-collection name="23d2c133-13d7-4be7-b5ee-45ecf84aa681">
+                        <property-collection name="d289c984-4470-4552-a7a8-c1d0c3b2a3c2">
                             <property name="choice.otherwise" value="true"/>
                             <property-collection name="choice.attributes"/>
                         </property-collection>
                     </properties>
+                    <description></description>
                 </pattern>
                 <compartment entity-id="compartment#1">
-                    <lane hadOnlyOneElement="false" index="35" isChoiceOtherwiseLane="false" entity-id="c06997e8-91a8-4910-ad67-afe4442851d2">
+                    <lane hadOnlyOneElement="false" index="35" isChoiceOtherwiseLane="false" entity-id="cf07d716-0e83-4976-afc3-9369360320dd">
                         <pattern name="process order" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="Flow Reference#1">
-                            <graphicalData x="828" y="43" width="88" height="67"/>
+                            <graphicalData x="0" y="0" width="0" height="0"/>
                             <properties>
 <property name="name" value="process-order"/>
 <property name="auxiliary;index" value="35"/>
                             </properties>
                         </pattern>
-                        <pattern name="save-order" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="Flow Reference#8">
-                            <graphicalData x="976" y="43" width="73" height="67"/>
+                        <pattern name="save-order" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="Flow Reference#2">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
                             <properties>
-<property name="auxiliary;moved-from" value="53"/>
 <property name="name" value="save-order"/>
+<property name="auxiliary;index" value="36"/>
                             </properties>
-                            <description></description>
                         </pattern>
                         <pattern name="XML&lt;saveOrderResponse&gt; To XML&lt;processOrderResponse&gt;" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/data-mapper-connector" entity-id="DataMapper#13">
                             <graphicalData x="0" y="0" width="0" height="0"/>
@@ -380,15 +393,15 @@
 <property name="returnClass"/>
 <property name="stream"/>
 <property name="input-ref"/>
-<property name="auxiliary;moved-from" value="54"/>
 <property name="target"/>
 <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/ee/data-mapper/transform"/>
 <property name="pipeSize"/>
 <property name="config-ref" value="xml_to_xml"/>
+<property name="auxiliary;index" value="37"/>
                             </properties>
                         </pattern>
                     </lane>
-                    <lane hadOnlyOneElement="false" index="39" isChoiceOtherwiseLane="true" entity-id="23d2c133-13d7-4be7-b5ee-45ecf84aa681">
+                    <lane hadOnlyOneElement="false" index="39" isChoiceOtherwiseLane="true" entity-id="d289c984-4470-4552-a7a8-c1d0c3b2a3c2">
                         <pattern name="Exception" type="http://www.mulesoft.org/schema/mule/scripting/groovyComponent" entity-id="Groovy#1">
                             <graphicalData x="0" y="0" width="0" height="0"/>
                             <properties>
@@ -413,7 +426,7 @@
             </splitter>
         </lane>
     </flow>
-    <flow SubFlow="true" name="process-order" type="http://www.mulesoft.org/schema/mule/core/subflow" entity-id="515e6e28-68f3-4602-b15a-92384facac39">
+    <flow SubFlow="true" name="process-order" type="http://www.mulesoft.org/schema/mule/core/subflow" entity-id="67618b52-797e-40f8-818d-12701d4678ff">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -422,10 +435,11 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="41"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#3">
+        <description></description>
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#2">
             <graphicalData x="0" y="0" width="0" height="0"/>
             <pattern name="processOrderRequest" type="http://www.mulesoft.org/schema/mule/core/variable-transformer" entity-id="Variable#2">
-                <graphicalData x="21" y="422" width="129" height="67"/>
+                <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="variableName" value="processOrderRequest"/>
                     <property name="value" value="#[payload]"/>
@@ -434,114 +448,119 @@
                 </properties>
             </pattern>
             <scope name="Async" type="http://www.mulesoft.org/schema/mule/core/async" entity-id="Async#1">
-                <graphicalData x="210" y="398" width="123" height="115"/>
+                <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="processingStrategy"/>
-                    <property name="auxiliary;moved-from" value="36"/>
+                    <property name="auxiliary;index" value="43"/>
                 </properties>
                 <description></description>
                 <compartment entity-id="compartment#2">
-                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#2">
-                        <pattern name="notify sku item movement" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="Flow Reference#2">
+                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#3">
+                        <pattern name="notify sku item movement" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="Flow Reference#3">
                             <graphicalData x="0" y="0" width="0" height="0"/>
                             <properties>
 <property name="name" value="notifiy-sku-item-movement"/>
-<property name="auxiliary;index" value="37"/>
-                            </properties>
-                        </pattern>
-                    </lane>
-                </compartment>
-            </scope>
-            <scope name="Message Enricher" type="org.mule.tooling.ui.modules.core.scope.enricher" entity-id="Message Enricher#1">
-                <graphicalData x="393" y="398" width="115" height="115"/>
-                <properties>
-                    <property name="source"/>
-                    <property name="target" value="flowVars.x"/>
-                    <property name="auxiliary;index" value="43"/>
-                </properties>
-                <compartment entity-id="compartment#3">
-                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#4">
-                        <pattern name="emtpy basket" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="Flow Reference#3">
-                            <graphicalData x="0" y="0" width="0" height="0"/>
-                            <properties>
-<property name="name" value="empty-basket"/>
 <property name="auxiliary;index" value="44"/>
                             </properties>
                         </pattern>
                     </lane>
                 </compartment>
             </scope>
-            <scope name="Message Enricher" type="org.mule.tooling.ui.modules.core.scope.enricher" entity-id="Message Enricher#2">
-                <graphicalData x="568" y="398" width="176" height="115"/>
+            <scope name="Message Enricher" type="org.mule.tooling.ui.modules.core.scope.enricher" entity-id="Message Enricher#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="source"/>
-                    <property name="target" value="flowVars.modifySkuStockCountResponse"/>
+                    <property name="target" value="flowVars.x"/>
                     <property name="auxiliary;index" value="45"/>
                 </properties>
-                <compartment entity-id="compartment#4">
-                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#5">
-                        <pattern name="modify-sku-stock-count" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="Flow Reference#4">
+                <description></description>
+                <compartment entity-id="compartment#3">
+                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#4">
+                        <pattern name="emtpy basket" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="Flow Reference#4">
                             <graphicalData x="0" y="0" width="0" height="0"/>
                             <properties>
-<property name="name" value="modify-sku-stock-count"/>
+<property name="name" value="empty-basket"/>
 <property name="auxiliary;index" value="46"/>
                             </properties>
                         </pattern>
                     </lane>
                 </compartment>
             </scope>
-            <scope name="Enrich with customer" type="org.mule.tooling.ui.modules.core.scope.enricher" entity-id="Message Enricher#3">
-                <graphicalData x="804" y="398" width="128" height="115"/>
+            <scope name="Message Enricher" type="org.mule.tooling.ui.modules.core.scope.enricher" entity-id="Message Enricher#2">
+                <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="source"/>
-                    <property name="target" value="flowVars.customer"/>
+                    <property name="target" value="flowVars.modifySkuStockCountResponse"/>
                     <property name="auxiliary;index" value="47"/>
                 </properties>
-                <compartment entity-id="compartment#5">
-                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#6">
-                        <pattern name="get customer" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="Flow Reference#5">
+                <description></description>
+                <compartment entity-id="compartment#4">
+                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#5">
+                        <pattern name="modify-sku-stock-count" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="Flow Reference#5">
                             <graphicalData x="0" y="0" width="0" height="0"/>
                             <properties>
-<property name="name" value="get-customer"/>
+<property name="name" value="modify-sku-stock-count"/>
 <property name="auxiliary;index" value="48"/>
                             </properties>
                         </pattern>
                     </lane>
                 </compartment>
             </scope>
-            <scope name="Enrich with discount, totalCost, loyaltyPoints" type="org.mule.tooling.ui.modules.core.scope.enricher" entity-id="Message Enricher#4">
-                <graphicalData x="992" y="398" width="253" height="115"/>
+            <scope name="Enrich with customer" type="org.mule.tooling.ui.modules.core.scope.enricher" entity-id="Message Enricher#3">
+                <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="source"/>
-                    <property name="target" value="flowVars.calculateDiscountResponse"/>
+                    <property name="target" value="flowVars.customer"/>
                     <property name="auxiliary;index" value="49"/>
                 </properties>
-                <compartment entity-id="compartment#6">
-                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#7">
-                        <pattern name="calculate-discount" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="Flow Reference#6">
+                <description></description>
+                <compartment entity-id="compartment#5">
+                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#6">
+                        <pattern name="get customer" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="Flow Reference#6">
                             <graphicalData x="0" y="0" width="0" height="0"/>
                             <properties>
-<property name="name" value="calculate-discount"/>
+<property name="name" value="get-customer"/>
 <property name="auxiliary;index" value="50"/>
                             </properties>
                         </pattern>
                     </lane>
                 </compartment>
             </scope>
+            <scope name="Enrich with discount, totalCost, loyaltyPoints" type="org.mule.tooling.ui.modules.core.scope.enricher" entity-id="Message Enricher#4">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="source"/>
+                    <property name="target" value="flowVars.calculateDiscountResponse"/>
+                    <property name="auxiliary;index" value="51"/>
+                </properties>
+                <description></description>
+                <compartment entity-id="compartment#6">
+                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#7">
+                        <pattern name="calculate-discount" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="Flow Reference#7">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="name" value="calculate-discount"/>
+<property name="auxiliary;index" value="52"/>
+                            </properties>
+                        </pattern>
+                    </lane>
+                </compartment>
+            </scope>
             <scope name="Message Enricher" type="org.mule.tooling.ui.modules.core.scope.enricher" entity-id="Message Enricher#5">
-                <graphicalData x="1305" y="398" width="143" height="115"/>
+                <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="source"/>
                     <property name="target" value="flowVars.addLoyaltyPointsResponse"/>
-                    <property name="auxiliary;index" value="51"/>
+                    <property name="auxiliary;index" value="53"/>
                 </properties>
+                <description></description>
                 <compartment entity-id="compartment#7">
                     <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#8">
-                        <pattern name="add-loyalty-points" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="Flow Reference#7">
+                        <pattern name="add-loyalty-points" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="Flow Reference#8">
                             <graphicalData x="0" y="0" width="0" height="0"/>
                             <properties>
 <property name="name" value="add-loyalty-points"/>
-<property name="auxiliary;index" value="52"/>
+<property name="auxiliary;index" value="54"/>
                             </properties>
                         </pattern>
                     </lane>
@@ -549,7 +568,7 @@
             </scope>
         </lane>
     </flow>
-    <flow SubFlow="true" name="get-customer" type="http://www.mulesoft.org/schema/mule/core/subflow" entity-id="77777810-572d-42f4-9f73-59a32bf1ac12">
+    <flow SubFlow="true" name="get-customer" type="http://www.mulesoft.org/schema/mule/core/subflow" entity-id="ee28877a-35f3-42be-bf82-bd782aadaeec">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -558,6 +577,7 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="55"/>
         </properties>
+        <description></description>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#9">
             <graphicalData x="0" y="0" width="0" height="0"/>
             <pattern name="getCustomerById.xml" type="http://www.mulesoft.org/schema/mule/core/parse-template" entity-id="Parse Template#1">
@@ -579,7 +599,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="true" name="save-order" type="http://www.mulesoft.org/schema/mule/core/subflow" entity-id="9acd9811-4490-4dea-ba6b-56c452034163">
+    <flow SubFlow="true" name="save-order" type="http://www.mulesoft.org/schema/mule/core/subflow" entity-id="0088641b-7272-4185-994d-b9223149736e">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -588,6 +608,7 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="58"/>
         </properties>
+        <description></description>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#10">
             <graphicalData x="0" y="0" width="0" height="0"/>
             <pattern name="XML&lt;processOrder&gt; To XML&lt;saveOrder&gt;" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/data-mapper-connector" entity-id="DataMapper#14">
@@ -631,7 +652,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="true" name="modify-sku-stock-count" type="http://www.mulesoft.org/schema/mule/core/subflow" entity-id="76aff71e-3bea-4bfb-afc4-2436ee477171">
+    <flow SubFlow="true" name="modify-sku-stock-count" type="http://www.mulesoft.org/schema/mule/core/subflow" entity-id="8ddd979d-f7f3-4b35-bf38-54ff1164064c">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -640,6 +661,7 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="64"/>
         </properties>
+        <description></description>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#11">
             <graphicalData x="0" y="0" width="0" height="0"/>
             <pattern name="Xml&lt;processOrder&gt; To Xml&lt;modifySKUStockCount&gt;" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/data-mapper-connector" entity-id="DataMapper#15">
@@ -667,7 +689,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="true" name="calculate-discount" type="http://www.mulesoft.org/schema/mule/core/subflow" entity-id="65dd2ec1-e175-47ed-ab71-e4ca98384d93">
+    <flow SubFlow="true" name="calculate-discount" type="http://www.mulesoft.org/schema/mule/core/subflow" entity-id="350eb316-c6f8-42be-b245-10e83627be55">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -714,7 +736,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="true" name="add-loyalty-points" type="http://www.mulesoft.org/schema/mule/core/subflow" entity-id="bb4416f8-97c6-438c-b606-c8397ee0b393">
+    <flow SubFlow="true" name="add-loyalty-points" type="http://www.mulesoft.org/schema/mule/core/subflow" entity-id="cea7fb2a-55af-4d9c-81ef-a59f95bc0df5">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -760,7 +782,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="true" name="notifiy-sku-item-movement" type="http://www.mulesoft.org/schema/mule/core/subflow" entity-id="f7ecfa6e-cd19-4c0d-92d9-d8cdc0c62c22">
+    <flow SubFlow="true" name="notifiy-sku-item-movement" type="http://www.mulesoft.org/schema/mule/core/subflow" entity-id="45b575ec-5351-47c4-8046-7107fb590ebc">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -771,36 +793,39 @@
         </properties>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#14">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="XML To Xml&lt;notifySKUItemMovement&gt;" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/data-mapper-connector" entity-id="354ff604-3746-4567-af02-fc71bb0c5623">
-                <graphicalData x="210" y="1236" width="183" height="80"/>
+            <pattern name="XML To Xml&lt;notifySKUItemMovement&gt;" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/data-mapper-connector" entity-id="DataMapper#18">
+                <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
-                    <property name="input-ref" value="#[payload]"/>
+                    <property name="returnClass"/>
+                    <property name="stream"/>
+                    <property name="input-ref"/>
+                    <property name="target"/>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/ee/data-mapper/transform"/>
-                    <property name="target" value="#[payload]"/>
+                    <property name="pipeSize"/>
                     <property name="config-ref" value="XML_To_Xml_notifySKUItemMovement_"/>
+                    <property name="auxiliary;index" value="77"/>
                 </properties>
             </pattern>
             <pattern name="notifiy Sku Item Movement" type="http://www.mulesoft.org/schema/mule/ws/consumer" entity-id="Web Service Consumer#14">
-                <graphicalData x="453" y="1235" width="98" height="82"/>
+                <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name=""/>
                     <property name="operation" value="notifySKUItemMovement"/>
                     <property name="mtomEnabled"/>
                     <property name="config-ref" value="NotificationServiceConsumer"/>
-                    <property name="auxiliary;index" value="79"/>
+                    <property name="auxiliary;index" value="78"/>
                 </properties>
-                <description></description>
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="true" name="empty-basket" type="http://www.mulesoft.org/schema/mule/core/subflow" entity-id="778e81a7-bc1f-45f0-a419-6113863a38a1">
+    <flow SubFlow="true" name="empty-basket" type="http://www.mulesoft.org/schema/mule/core/subflow" entity-id="1297592d-e118-428a-9ab9-819aea1b0273">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
             <property name="processingStrategy"/>
             <property name="bussinessEventsLabel"/>
             <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="80"/>
+            <property name="auxiliary;index" value="79"/>
         </properties>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#15">
             <graphicalData x="0" y="0" width="0" height="0"/>
@@ -814,7 +839,7 @@
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/ee/data-mapper/transform"/>
                     <property name="pipeSize"/>
                     <property name="config-ref" value="XML_To_Xml_emptyBasket_"/>
-                    <property name="auxiliary;index" value="81"/>
+                    <property name="auxiliary;index" value="80"/>
                 </properties>
             </pattern>
             <pattern name="Web Service Consumer" type="http://www.mulesoft.org/schema/mule/ws/consumer" entity-id="Web Service Consumer#15">
@@ -824,7 +849,7 @@
                     <property name="operation" value="emptyBasket"/>
                     <property name="mtomEnabled"/>
                     <property name="config-ref" value="BasketServiceConsumer"/>
-                    <property name="auxiliary;index" value="82"/>
+                    <property name="auxiliary;index" value="81"/>
                 </properties>
             </pattern>
         </lane>
